@@ -199,7 +199,8 @@ ${{ordered_fields: 	/**
 	public MAVLinkPacket pack(){
 		MAVLinkPacket packet = new MAVLinkPacket();
 		packet.len = MAVLINK_MSG_LENGTH;
-		packet.sysid = 255;
+		// sysid is set in MAVLinkPacket not in each individual message
+//		packet.sysid = 255;
 		packet.compid = 190;
 		packet.msgid = MAVLINK_MSG_ID_${name};
 ${{ordered_fields:		${packField}
@@ -286,6 +287,9 @@ public class MAVLinkPacket implements Serializable {
 	
 	public static final int MAVLINK_STX = 254;
 	
+	// Set ground control station ID here for all sent messages
+	public static final int GCS_ID = 255;
+	
 	/**
 	 * Message length. NOT counting STX, LENGTH, SEQ, SYSID, COMPID, MSGID, CRC1 and CRC2
 	 */
@@ -298,7 +302,7 @@ public class MAVLinkPacket implements Serializable {
 	 * ID of the SENDING system. Allows to differentiate different MAVs on the
 	 * same network.
 	 */
-	public int sysid;
+	public int sysid = GCS_ID;
 	/**
 	 * ID of the SENDING component. Allows to differentiate different components
 	 * of the same system, e.g. the IMU and the autopilot.
