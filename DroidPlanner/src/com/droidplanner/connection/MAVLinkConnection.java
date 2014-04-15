@@ -87,12 +87,21 @@ public abstract class MAVLinkConnection extends Thread {
 		if (iavailable < 1) {
 			return;
 		}
-		for (i = 0; i < iavailable; i++) {
+		for (i = 0; i < iavailable; i++)
+		{
 			receivedPacket = parser.mavlink_parse_char(readData[i] & 0x00ff);
-			if (receivedPacket != null) {
+			if (receivedPacket != null)
+			{
 				saveToLog(receivedPacket);
-				MAVLinkMessage msg = receivedPacket.unpack();
-				listner.onReceiveMessage(msg);
+				
+				// Check if the incoming MAVLinkPacket is designated for us
+				// This is the value set in the parameters of the APM in SYSID_THISMAV
+				if (receivedPacket.sysid == 5)
+				{
+					// The sysid of the incoming message matches our ground control station ID, process the packet
+					MAVLinkMessage msg = receivedPacket.unpack();
+					listner.onReceiveMessage(msg);
+				}				
 			}
 		}
 
