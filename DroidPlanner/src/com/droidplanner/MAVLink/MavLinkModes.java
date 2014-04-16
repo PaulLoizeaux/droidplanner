@@ -23,14 +23,14 @@ public class MavLinkModes {
 		msg.y = (float) wp.getCoord().longitude;
 		msg.z = wp.getHeight().floatValue();
 		msg.autocontinue = 1; // TODO use correct parameter
-		msg.target_system = 1;
+		msg.target_system = 5;
 		msg.target_component = 1;
 		drone.MavClient.sendMavPacket(msg.pack());
 	}
 
 	public static void changeFlightMode(Drone drone, ApmModes mode) {
 		msg_set_mode msg = new msg_set_mode();
-		msg.target_system = 1;
+		msg.target_system = 5;
 		msg.base_mode = 1; // TODO use meaningful constant
 		msg.custom_mode = mode.getNumber();
 		drone.MavClient.sendMavPacket(msg.pack());

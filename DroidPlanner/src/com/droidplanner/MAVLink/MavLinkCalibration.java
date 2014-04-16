@@ -17,7 +17,7 @@ public class MavLinkCalibration {
 
 	public static void sendStartCalibrationMessage(Drone drone) {
 		msg_command_long msg = new msg_command_long();
-		msg.target_system = 1;
+		msg.target_system = 5;
 		msg.target_component = 1;
 
 		msg.command = MAV_CMD.MAV_CMD_PREFLIGHT_CALIBRATION;

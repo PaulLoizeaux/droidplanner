@@ -54,7 +54,7 @@ public class MavLinkStreamRates {
 	private static void requestMavlinkDataStream(MAVLinkClient mAVClient,
 			int stream_id, int rate) {
 		msg_request_data_stream msg = new msg_request_data_stream();
-		msg.target_system = 1;
+		msg.target_system = 5;
 		msg.target_component = 1;
 
 		msg.req_message_rate = (short) rate;
