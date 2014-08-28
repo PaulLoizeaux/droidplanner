@@ -127,7 +127,7 @@ OnAltitudeChangedListner, OnPathFinishedListner, OnNewGridListner {
 
 				// Use the method to make sure the input method safe
 				// Initialize tts engine before use?, seems like first attempt doesn't make any words
-				if(checkValidMission())
+				if(checkvalidMission())
 				{
 
 					// Mission path on tablet is valid
@@ -322,7 +322,7 @@ OnAltitudeChangedListner, OnPathFinishedListner, OnNewGridListner {
 	}
 
 	// Check that the input mission on the app is fine
-	private boolean checkValidMission(){
+	private boolean checkvalidMission(){
 
 		// Might be better to just have wayPoints as a List instead of an ArrayList, polymorphism, also, how DroidPlanner calls stores this data hurts my head
 		// Get an ArrayList of Waypoints class, waypoint.java
