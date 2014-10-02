@@ -56,7 +56,6 @@ OnNavigationListener, ConnectionStateListner, OnAltitudeChangedListner, OnSystem
 
 	private ScreenOrientation screenOrientation = new ScreenOrientation(this);
 
-	private final int[] armSafeScreens = {1,4,5,6};
 	public SuperActivity() {
 		super();
 	}
@@ -89,8 +88,9 @@ OnNavigationListener, ConnectionStateListner, OnAltitudeChangedListner, OnSystem
 		actionBar.setSelectedNavigationItem(getNavigationItem());
 	}
 
-	/**
-	 * Used to lock the user into 
+	/*
+	 * Used to switch between screens
+	 * Checks to make sure the screen is safe to change to when the vehicle is armed
 	 */
 	@Override
 	public boolean onNavigationItemSelected(int itemPosition, long itemId) {
@@ -99,7 +99,11 @@ OnNavigationListener, ConnectionStateListner, OnAltitudeChangedListner, OnSystem
 			return false;
 		}
 
+		// If the requested screen is listed as safe skip this method
 		if(!isSafeScreen(itemPosition)){
+			// Screen is listed as not being safe
+
+			// Put a toast on the screen to inform user screen switching is off
 			Toast.makeText(this, "Unable to access selected screen when vehicle is armed", Toast.LENGTH_LONG).show();
 			return false;
 		}
@@ -289,9 +293,22 @@ OnNavigationListener, ConnectionStateListner, OnAltitudeChangedListner, OnSystem
 	}
 
 	public boolean isSafeScreen(int screenIndex){
+
+		// List of valid screens to switch to when vehicle is armed
+		final int[] armSafeScreens = {1,4,5,6};
+
+		// Check if the vehicle is armed
 		if(!drone.state.isArmed())
+
+			// The vehicle is not armed (disarmed), so it is safe to change to any screen
 			return true;
 
+		/*
+		 * Check if the requested screen to switch to is contained in the safe screen list
+		 * 
+		 * If it is contained the method will return true as the screen is safe
+		 * If it is not contained the method will return false as the screen is not safe
+		*/
 		else return Arrays.asList(armSafeScreens).contains(screenIndex);
 	}
 }
