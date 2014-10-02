@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.droidplanner"
     android:versionCode="70"
-    android:versionName="11.0.0" >
+    android:versionName="12.0.0" >
 
     <uses-sdk
         android:minSdkVersion="14"
