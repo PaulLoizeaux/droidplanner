@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_title">DroidPlanner</string>
+    <string name="app_title">BlackBat GC</string>
     <string name="about">About</string>
     <string name="version">Version</string>
     <string name="storage_folder">Storage Folder</string>
@@ -63,7 +63,7 @@
     <string name="flight_altitude">Flight Altitude:</string>
     <string name="overlap">Overlap:</string>
     <string name="sidelap">Sidelap:</string>
-    
+
     <string name="screen_planning">Planning</string>
     <string name="screen_flight_data">Flight Data</string>
     <string name="screen_rc">RC</string>
@@ -170,7 +170,7 @@
     <string name="rowheader_wp_no">WP#</string>
     <string name="rowheader_wp_delta">∆ WP</string>
     <string name="rowheader_wp_desc">Description</string>
-    
+
     <!-- QuadForge custom FlightData buttons -->
     <string name="launch">Launch</string>
     <string name="land">Land</string>
